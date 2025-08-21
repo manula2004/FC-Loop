@@ -13,6 +13,7 @@ body {
   height: 100vh;
   width: 100%;
   padding: 2rem;
+  margin-top: 220px;
   box-sizing: border-box;
 }
 
@@ -62,7 +63,8 @@ body {
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
   width: 100%;
-  height: 100%;
+  height: 170%;
+  margin-top: 100px;
   display: flex;
   flex-direction: column;
 }
@@ -149,21 +151,32 @@ body {
 
 /* Commit logo pulse */
 .commit-logo {
-  width: 60%;
+  width: 40%;
   height: auto;
   max-height: 40%;   /* fills ~80% of left section */
   margin-top: 30px;
   object-fit: contain;
-  animation: pulse 3s ease-in-out infinite, logo-glow 2s ease-in-out infinite;
-  /* Use drop-shadow for a natural glow around the logo shape */
+  /* Removed glow animation */
 }
+
+/* Glow animation for 'Starting soon' text */
+.starting-soon {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 3rem;
+  color: #fff;
+  margin: 1rem 0 0.5rem 0;
+  animation: logo-glow 2s ease-in-out infinite;
+  display: inline-block;
+}
+
 
 @keyframes logo-glow {
   0%, 100% {
-    filter: drop-shadow(0 0 10px #f0feff) drop-shadow(0 0 20px #1a2a6c);
+    filter: drop-shadow(0 0 10px #00eaff) drop-shadow(0 0 20px #1a2a6c);
   }
   50% {
-    filter: drop-shadow(0 0 20px #effeff) drop-shadow(0 0 40px #1a2a6c);
+    filter: drop-shadow(0 0 20px #00eaff) drop-shadow(0 0 40px #1a2a6c);
   }
 }
 
@@ -186,15 +199,15 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: -0.3rem;
   background: none; /* remove placeholder white bg */
   gap: 1rem;
 }
 
 .logo {
   background: rgba(255, 255, 255, 0);
-  width: 120px;
-  height: 60px;
+  width: 90px;
+  height: 200px;
   border-radius: 0.5rem;
   display: flex;
   align-items: center;

@@ -79,6 +79,7 @@ export default function FirstCommitSlide() {
         <div className="left">
           <img src="/commit.png" alt="Commit Logo" className="commit-logo" />
           <p className="subtitle">The Roadmap to Your Developer Journey</p>
+          <strong className="starting-soon">STARTING SOON!</strong>
           <div className="logos">
             <img src="/logo2.png" alt="Logo 1" className="logo small" />
             <img src="/logo1.png" alt="Logo 2" className="logo small2" />

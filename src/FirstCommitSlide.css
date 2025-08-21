@@ -1,3 +1,7 @@
+/* Code line styling for terminal look */
+.code-line {
+  white-space: pre;
+}
 body {
   margin: 0;
   font-family: "Fira Code", monospace;
@@ -50,7 +54,7 @@ body {
   position: fixed;
   top: 4rem;
   right: 2rem;
-  width: 600px;
+  width: 700px;
   height: 400px; /* fills height minus padding */
   background: rgba(0,0,0,0.5);
   border-radius: 1rem;
@@ -65,7 +69,7 @@ body {
   margin: 0;
   padding: 1.5rem;
   font-family: "Fira Code", monospace;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.5rem;
   overflow-y: auto;
   overflow-x: hidden;
@@ -119,7 +123,7 @@ body {
     filter: drop-shadow(0 0 20px #effeff) drop-shadow(0 0 40px #1a2a6c);
   }
 }
-}
+
 
 @keyframes glow {
   0%, 100% {

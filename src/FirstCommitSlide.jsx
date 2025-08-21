@@ -87,16 +87,27 @@ export default function FirstCommitSlide() {
 
         {/* Right side */}
         <div className="right">
-          <pre>
-            {typedTokens.map((line, i) => (
-              <div key={i} className="code-line">
-                {Array.isArray(line)
-                  ? line.map((token, j) => <span key={j}>{token}</span>)
-                  : line}
-                {i === typedTokens.length - 1 && <span className="cursor">|</span>}
+          <div className="terminal-window">
+            <div className="terminal-header">
+              <div className="buttons">
+                <span className="red"></span>
+                <span className="yellow"></span>
+                <span className="green"></span>
               </div>
-            ))}
-          </pre>
+              <div className="filename">FIRST COMMIT.py</div>
+            </div>
+
+            <pre className="terminal-body">
+              {typedTokens.map((line, i) => (
+                <div key={i} className="code-line">
+                  {Array.isArray(line)
+                    ? line.map((token, j) => <span key={j}>{token}</span>)
+                    : line}
+                  {i === typedTokens.length - 1 && <span className="cursor">|</span>}
+                </div>
+              ))}
+            </pre>
+          </div>
         </div>
       </div>
     </div>

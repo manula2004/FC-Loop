@@ -1,0 +1,178 @@
+body {
+  margin: 0;
+  font-family: "Fira Code", monospace;
+  background: linear-gradient(-45deg, #000000, #02026d, #0f1c50, #1a2a6c);
+  background-size: 400% 400%;
+  color: white;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+
+.slide {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 420px; /* leave space for the fixed right panel */
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.highlight {
+  color: #3b82f6;
+}
+
+.subtitle {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800; /* semibold */
+  font-style: italic;
+  font-size: 1.25rem;
+  color: #60a5fa;
+  margin: 0.5rem 0;
+}
+
+/* FIXED RIGHT PANEL */
+.right {
+  position: fixed;
+  top: 4rem;
+  right: 2rem;
+  width: 600px;
+  height: 400px; /* fills height minus padding */
+  background: rgba(0,0,0,0.5);
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.6);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.right pre {
+  flex: 1;
+  margin: 0;
+  padding: 1.5rem;
+  font-family: "Fira Code", monospace;
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+.right pre::-webkit-scrollbar {
+  width: 8px;
+}
+
+.right pre::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.right pre::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+  border-radius: 4px;
+}
+
+.right pre::-webkit-scrollbar-thumb:hover {
+  background: #60a5fa;
+}
+
+.cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.1%, 100% { opacity: 0; }
+}
+
+/* Commit logo pulse */
+
+.commit-logo {
+  width: 60%;
+  height: auto;
+  max-height: 40%;   /* fills ~80% of left section */
+  margin-top: 30px;
+  object-fit: contain;
+  animation: pulse 3s ease-in-out infinite, logo-glow 2s ease-in-out infinite;
+  /* Use drop-shadow for a natural glow around the logo shape */
+}
+
+@keyframes logo-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px #f0feff) drop-shadow(0 0 20px #1a2a6c);
+  }
+  50% {
+    filter: drop-shadow(0 0 20px #effeff) drop-shadow(0 0 40px #1a2a6c);
+  }
+}
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px 10px #00eaff, 0 0 40px 20px #1a2a6c;
+  }
+  50% {
+    box-shadow: 0 0 40px 20px #00eaff, 0 0 80px 40px #1a2a6c;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  80% { opacity: 0.8; }
+}
+
+/* Bottom logos */
+.logos {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 1rem;
+  background: none; /* remove placeholder white bg */
+  gap: 1rem;
+}
+
+.logo {
+  background: rgba(255, 255, 255, 0);
+  width: 120px;
+  height: 60px;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-weight: bold;
+}
+
+.logo.small {
+  height: 140px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo.small2 {
+  height: 180px;
+  width: auto;
+  margin-top: 15px;
+  object-fit: contain;
+}
+
+/* Syntax highlight */
+.kw { color: #ef4444; }
+.cls { color: #22c55e; }
+.fn { color: #facc15; }
+.var { color: #06b6d4; }
+.str { color: #22c55e; }

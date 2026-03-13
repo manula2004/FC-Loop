@@ -1,237 +1,193 @@
 body {
   margin: 0;
-  font-family: "Fira Code", monospace;
-  background: linear-gradient(-45deg, #000000, #02026d, #0f1c50, #1a2a6c);
-  background-size: 400% 400%;
+  font-family: "Montserrat", sans-serif;
+  background: #000;
   color: white;
   height: 100vh;
   overflow: hidden;
 }
 
 .slide {
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  padding: 2rem;
-  margin-top: 220px;
-  box-sizing: border-box;
-}
-
-.left {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-right: 420px; /* leave space for the fixed right panel */
-}
-
-.title {
-  font-size: 4rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.highlight {
-  color: #3b82f6;
-}
-
-.subtitle {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 800; /* semibold */
-  font-style: italic;
-  font-size: 1.25rem;
-  color: #60a5fa;
-  margin: 0.5rem 0;
-}
-
-/* FIXED RIGHT PANEL */
-.right {
-  position: fixed;
-  top: 4rem;
-  right: 2rem;
-  width: 700px;
-  height: 400px; /* fills height minus padding */
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Terminal window styling */
-.terminal-window {
-  background-color: #0f172a; /* main dark background */
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 170%;
-  margin-top: 100px;
-  display: flex;
-  flex-direction: column;
-}
-
-.terminal-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #1e293b; /* slightly lighter for header */
-  height: 32px;
   position: relative;
-}
-
-.terminal-header .buttons {
-  position: absolute;
-  left: 12px;
   display: flex;
-  gap: 8px;
-}
-
-.terminal-header .buttons span {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.terminal-header .buttons .red { background: #ff5f56; }
-.terminal-header .buttons .yellow { background: #ffbd2e; }
-.terminal-header .buttons .green { background: #27c93f; }
-
-.terminal-header .filename {
-  color: #a5f3fc;
-  font-family: monospace;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.terminal-body {
-  padding: 16px;
-  font-family: "Fira Code", monospace;
-  font-size: 14px;
-  color: #e2e8f0;
-  line-height: 1.5;
-  white-space: pre-wrap;
-  flex: 1;
-  overflow-y: auto;
-  background: transparent;
-  margin: 0;
-}
-
-/* Code line styling for terminal look */
-.code-line {
-  white-space: pre;
-}
-
-/* Scrollbar */
-.terminal-body::-webkit-scrollbar {
-  width: 8px;
-}
-
-.terminal-body::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-}
-
-.terminal-body::-webkit-scrollbar-thumb {
-  background: #3b82f6;
-  border-radius: 4px;
-}
-
-.terminal-body::-webkit-scrollbar-thumb:hover {
-  background: #60a5fa;
-}
-
-.cursor {
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  50.1%, 100% { opacity: 0; }
-}
-
-/* Commit logo pulse */
-.commit-logo {
-  width: 40%;
-  height: auto;
-  max-height: 40%;   /* fills ~80% of left section */
-  margin-top: 30px;
-  object-fit: contain;
-  /* Removed glow animation */
-}
-
-/* Glow animation for 'Starting soon' text */
-.starting-soon {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 800;
-  font-size: 3rem;
-  color: #fff;
-  margin: 1rem 0 0.5rem 0;
-  animation: logo-glow 2s ease-in-out infinite;
-  display: inline-block;
-}
-
-
-@keyframes logo-glow {
-  0%, 100% {
-    filter: drop-shadow(0 0 10px #00eaff) drop-shadow(0 0 20px #1a2a6c);
-  }
-  50% {
-    filter: drop-shadow(0 0 20px #00eaff) drop-shadow(0 0 40px #1a2a6c);
-  }
-}
-
-@keyframes glow {
-  0%, 100% {
-    box-shadow: 0 0 20px 10px #00eaff, 0 0 40px 20px #1a2a6c;
-  }
-  50% {
-    box-shadow: 0 0 40px 20px #00eaff, 0 0 80px 40px #1a2a6c;
-  }
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  80% { opacity: 0.8; }
-}
-
-/* Bottom logos */
-.logos {
-  display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-top: -0.3rem;
-  background: none; /* remove placeholder white bg */
-  gap: 1rem;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
 }
 
-.logo {
-  background: rgba(255, 255, 255, 0);
-  width: 90px;
-  height: 200px;
-  border-radius: 0.5rem;
+/* Background Effects */
+.background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background: radial-gradient(circle at center, #1a2a6c 0%, #000 70%);
+  overflow: hidden;
+}
+
+.glow-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 234, 255, 0.1) 0%, transparent 50%);
+  z-index: 2;
+  animation: pulse-glow 8s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* Content Styling */
+.content-wrapper {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: black;
-  font-weight: bold;
+  padding-bottom: 15vh;
+  /* Space for logos at bottom */
+  box-sizing: border-box;
+  z-index: 10;
+  animation: fade-in-up 2s ease-out;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.commit-logo {
+  width: 250px;
+  height: auto;
+  margin-top: -10vh;
+  /* Lifted slightly above middle */
+  filter: drop-shadow(0 0 30px rgba(0, 234, 255, 0.4));
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.starting-soon {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 4.5rem;
+  font-weight: 700;
+  letter-spacing: 0.6rem;
+  text-transform: uppercase;
+  margin-top: 10rem;
+  line-height: 1.3;
+  
+  /* Premium Light Glare Gradient (No dark parts) */
+  background: linear-gradient(
+    110deg,
+    #0ea5e9 20%,
+    #7dd3fc 40%,
+    #ffffff 50%,
+    #7dd3fc 60%,
+    #0ea5e9 80%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* Subtle Shadow for Depth */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  
+  animation: shine 5s linear infinite, premium-glow 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes premium-glow {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.4));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.7));
+  }
+}
+
+.logos {
+  position: absolute;
+  bottom: 3rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 4rem;
 }
 
 .logo.small {
-  height: 140px;
-  width: auto;
-  object-fit: contain;
+  height: 100px;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+  transition: transform 0.3s ease;
 }
 
 .logo.small2 {
-  height: 180px;
-  width: auto;
-  margin-top: 15px;
-  object-fit: contain;
+  height: 130px;
+  transform: translateY(20px);
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+  transition: transform 0.3s ease;
 }
 
-/* Syntax highlight */
-.kw { color: #ef4444; }
-.cls { color: #22c55e; }
-.fn { color: #facc15; }
-.var { color: #06b6d4; }
-.str { color: #22c55e; }
+.logo:hover {
+  transform: scale(1.1);
+}
+
+/* Particle Canvas */
+#particle-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}

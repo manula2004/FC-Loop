@@ -1,114 +1,113 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import "./FirstCommitSlide.css";
 
-export default function FirstCommitSlide() {
-  // Each line is made up of styled tokens
-  const codeLines = [
-    [<span className="kw">class</span>, " ", <span className="cls">SasnakaSansada</span>, ":"],
-    ["  ", <span className="kw">def</span>, " ", <span className="fn">__init__</span>, "(", <span className="var">self</span>, ", ", <span className="var">name</span>, "):"],
-    ["    self.name = ", <span className="var">name</span>],
-    ["    self.mission = ", <span className="str">"Empowering the next generation of software engineers!"</span>],
-    ["    self.vision = [", <span className="str">"Cloud"</span>, ", ", <span className="str">"AI"</span>, ", ", <span className="str">"Cybersecurity"</span>, ","],
-    ["                 ", <span className="str">"Web Dev"</span>, ", ", <span className="str">"Data Science"</span>, " ...]"],
-    ["  ", <span className="kw">def</span>, " ", <span className="fn">execute</span>, "(", <span className="var">self</span>, "):"],
-    ["    ", <span className="fn">print</span>, "(", <span className="str">"Starting soon..."</span>, ")"],
-    [""],
-    ["# Initialize the project"],
-    ["project = ", <span className="cls">SasnakaSansada</span>, "(", <span className="str">"Project Nipayumai"</span>, ")"],
-    ["project.execute()"]
-  ];
-
-  const [typedTokens, setTypedTokens] = useState([]);
-  const [lineIndex, setLineIndex] = useState(0);
-  const [tokenIndex, setTokenIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [loop, setLoop] = useState(0);
+const ParticleBackground = () => {
+  const canvasRef = useRef(null);
 
   useEffect(() => {
-    if (lineIndex < codeLines.length) {
-      const tokens = codeLines[lineIndex];
-      if (tokenIndex < tokens.length) {
-        const token = tokens[tokenIndex];
-        const tokenStr = typeof token === "string" ? token : token.props.children;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-        if (charIndex < tokenStr.length) {
-          const timeout = setTimeout(() => {
-            const newToken =
-              typeof token === "string"
-                ? token.slice(0, charIndex + 1)
-                : { ...token, props: { ...token.props, children: tokenStr.slice(0, charIndex + 1) } };
+    const ctx = canvas.getContext("2d");
+    let animationFrameId;
 
-            setTypedTokens((prev) => {
-              const copy = [...prev];
-              if (!copy[lineIndex]) copy[lineIndex] = [];
-              copy[lineIndex][tokenIndex] = newToken;
-              return copy;
-            });
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
 
-            setCharIndex((prev) => prev + 1);
-          }, 50 + Math.random() * 80);
+    window.addEventListener("resize", resize);
+    resize();
 
-          return () => clearTimeout(timeout);
-        } else {
-          setCharIndex(0);
-          setTokenIndex((prev) => prev + 1);
-        }
-      } else {
-        const timeout = setTimeout(() => {
-          setTokenIndex(0);
-          setLineIndex((prev) => prev + 1);
-        }, 300);
-        return () => clearTimeout(timeout);
+    const particles = [];
+    const particleCount = 100;
+
+    class Particle {
+      constructor() {
+        this.reset();
       }
-    } else {
-      const timeout = setTimeout(() => {
-        setTypedTokens([]);
-        setLineIndex(0);
-        setTokenIndex(0);
-        setCharIndex(0);
-        setLoop((prev) => prev + 1);
-      }, 2000);
-      return () => clearTimeout(timeout);
-    }
-  }, [lineIndex, tokenIndex, charIndex, loop]);
 
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.opacity = Math.random() * 0.5 + 0.2;
+        this.fadeSpeed = Math.random() * 0.01 + 0.005;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+
+        this.opacity -= this.fadeSpeed;
+        if (this.opacity <= 0) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        ctx.fillStyle = `rgba(0, 234, 255, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Add a small glow to some particles
+        if (this.size > 2) {
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = "#00eaff";
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p) => {
+        p.update();
+        p.draw();
+      });
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} id="particle-canvas" />;
+};
+
+export default function FirstCommitSlide() {
   return (
     <div className="slide">
-      <div className="content">
-        {/* Left side */}
-        <div className="left">
-          <img src="/commit.png" alt="Commit Logo" className="commit-logo" />
-          <p className="subtitle">The Roadmap to Your Developer Journey</p>
-          <strong className="starting-soon">STARTING SOON!</strong>
-          <div className="logos">
-            <img src="/logo2.png" alt="Logo 1" className="logo small" />
-            <img src="/logo1.png" alt="Logo 2" className="logo small2" />
-          </div>
+      <div className="background-container">
+        <div className="glow-overlay" />
+        <ParticleBackground />
+      </div>
+
+      <div className="content-wrapper">
+        <img src="/commit.png" alt="Commit Logo" className="commit-logo" />
+
+        <div className="text-container">
+          <h1 className="starting-soon">CLOSING <br /> CEREMONY</h1>
         </div>
 
-        {/* Right side */}
-        <div className="right">
-          <div className="terminal-window">
-            <div className="terminal-header">
-              <div className="buttons">
-                <span className="red"></span>
-                <span className="yellow"></span>
-                <span className="green"></span>
-              </div>
-              <div className="filename">FIRST COMMIT.py</div>
-            </div>
-
-            <pre className="terminal-body">
-              {typedTokens.map((line, i) => (
-                <div key={i} className="code-line">
-                  {Array.isArray(line)
-                    ? line.map((token, j) => <span key={j}>{token}</span>)
-                    : line}
-                  {i === typedTokens.length - 1 && <span className="cursor">|</span>}
-                </div>
-              ))}
-            </pre>
-          </div>
+        <div className="logos">
+          <img src="/logo2.png" alt="Sasnaka Sansada" className="logo small" />
+          <img src="/logo1.png" alt="First Commit" className="logo small2" />
         </div>
       </div>
     </div>

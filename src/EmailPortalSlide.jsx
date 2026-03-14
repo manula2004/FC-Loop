@@ -135,7 +135,7 @@ export default function EmailPortalSlide() {
 
   const jargonWords = [
     "INITIALIZING DATA STREAM...",
-    "CONFIGURING NEURAL UPLINK...",
+    "CONFIGURING PARTICIPANT UPLINK...",
     "ENCRYPTING PACKET HEADERS...",
     "SYNCHRONIZING PORTAL VECTORS...",
     "ESTABLISHING SECURE RELAY..."
@@ -221,12 +221,12 @@ export default function EmailPortalSlide() {
             className="send-emails-btn"
             onClick={handleSendEmails}
           >
-            SEND EMAILS
+            DEPLOY CERTIFICATES
           </button>
         )}
 
         {status === "sent" && (
-          <h2 className="emails-sent-text">EMAILS SENT</h2>
+          <h2 className="emails-sent-text">CERTIFICATES SENT</h2>
         )}
       </div>
     </div>

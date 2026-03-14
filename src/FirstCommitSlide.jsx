@@ -31,8 +31,8 @@ const ParticleBackground = () => {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         // Depth simulation
-        this.z = Math.random() * 1 + 0.1; 
-        this.size = this.z * 2.5; 
+        this.z = Math.random() * 1 + 0.1;
+        this.size = this.z * 2.5;
         this.speedX = (Math.random() - 0.5) * (this.z * 0.8);
         this.speedY = (Math.random() - 0.5) * (this.z * 0.8);
         this.opacity = 0;
@@ -82,12 +82,12 @@ const ParticleBackground = () => {
       particles.push(new Particle());
     }
 
-    // GSAP Background Flare Logic
+
     const createFlare = () => {
       const x = Math.random() * canvas.width;
       const y = Math.random() * canvas.height;
       const flare = { r: 0, opacity: 0 };
-      
+
       gsap.to(flare, {
         r: 300,
         opacity: 0.1,
@@ -105,7 +105,7 @@ const ParticleBackground = () => {
         onComplete: createFlare
       });
     };
-    
+
     // Start flares
     setTimeout(createFlare, 2000);
 
@@ -140,17 +140,17 @@ export default function FirstCommitSlide({ onNavigateEmail }) {
 
       <div className="content-wrapper">
         <img src="/commit.png" alt="Commit Logo" className="commit-logo" />
-        
+
         <div className="text-container">
           <h1 className="starting-soon">CLOSING <br /> CEREMONY</h1>
         </div>
 
         <div className="logos">
           <img src="/logo2.png" alt="Sasnaka Sansada" className="logo small" />
-          <img 
-            src="/logo1.png" 
-            alt="First Commit" 
-            className="logo small2 clickable" 
+          <img
+            src="/logo1.png"
+            alt="First Commit"
+            className="logo small2 clickable"
             onClick={onNavigateEmail}
             title="Go to Email Portal"
           />
